@@ -1,0 +1,9 @@
+*{
+    -ms-overflow-style: none;
+}
+.config::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-color: transparent transparent;
+    width: 0;
+}

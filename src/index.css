@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  font-family: 'Lora', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Lora', serif;
+}
+
+* {
+  box-sizing: border-box
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
