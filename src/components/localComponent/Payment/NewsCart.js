@@ -3,9 +3,9 @@ import { AiFillDelete } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
 import {motion, AnimatePresence} from 'framer-motion'
-import { deleteNew } from "../../../api";
+import { deleteNew, getNews } from "../../../api";
 import { GetDataToContext } from "../../../context/ProviderContext";
-import { setAlertType } from "../../../context/reducer";
+import { setAlertType, setAllNews } from "../../../context/reducer";
 
 const NewsCart = ({ image, text, id }) => {
   const navigate = useNavigate();
@@ -24,17 +24,22 @@ const NewsCart = ({ image, text, id }) => {
   const handleDeleteNew = (id) => {
     deleteNew(id).then((data) => {
       if (data) {
-        dispatch(setAlertType("success"))
+        getNews().then((news) => {
+          dispatch(setAllNews(news))
+        })
+        setOverlay(false);
+        dispatch(setAlertType("delete"))
       }
+     
     })
     setTimeout(() => {
-      dispatchEvent(setAlertType(null))
-    }, 3000)
+      dispatch(setAlertType(null))
+    }, 4000)
   }
 
   return (
     <div
-      className="flex flex-col bg-slate-200 px-1 pt-2 pb-1 cursor-pointer mb-2 mr-3 hover:bg-slate-300 relative"
+      className="flex flex-col bg-slate-200 px-2 pt-2 pb-1 cursor-pointer mb-2 mr-3 hover:bg-slate-300 relative rounded-md backdrop-blur-sm shadow-sm"
       style={{ width: "calc(20% - 10px" }}
     >
       <div

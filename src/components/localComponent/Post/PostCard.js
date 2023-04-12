@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import logo from "../../../assets/logo/logo3.png";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { GetDataToContext } from "../../../context/ProviderContext";
 import { setPostId } from './../../../context/reducer';
+import {FaInfoCircle} from 'react-icons/fa'
 
 const PostCard = ({ image, text, id, content, nameProduct, priceProduct, rateProduct }) => {
   const [isLove, setIsLove] = useState(false);
@@ -34,7 +34,7 @@ const PostCard = ({ image, text, id, content, nameProduct, priceProduct, ratePro
 
   return (
     <div
-      className="flex flex-col bg-slate-200 px-1 pt-2 pb-1 cursor-pointer mb-2 mr-3 hover:bg-slate-300"
+      className="flex flex-col bg-slate-200 px-2 pt-2 pb-2 cursor-pointer mb-2 mr-3 hover:bg-slate-300 rounded-md backdrop-blur-sm shadow-sm"
       style={{ width: "calc(20% - 10px" }}
     >
       <div

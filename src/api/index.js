@@ -1,14 +1,14 @@
 import axios from "axios"
 
 
-const baseUrl = 'https://5369-171-224-181-255.ngrok-free.app/'
+const baseUrl = 'https://4eef-171-224-181-255.ngrok-free.app/'
 
 
 //products
 export const getAllProducts = async () => {
     try {
 
-        const allProducts = await axios.get(`${baseUrl}api/product/?page=1&perPage=1000`, 
+        const allProducts = await axios.get(`${baseUrl}api/product/report`, 
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -16,13 +16,35 @@ export const getAllProducts = async () => {
             }
         })
         if (allProducts) {
-            return allProducts?.data?.result?.data
+            return allProducts?.data?.data
         } else {
             return null;
         }
 
     } catch (error) {
         console.log("getAllProduct" + error)
+    }
+}
+
+//approve
+export const handleProduct = async (id, status) => {
+    try {
+
+        const Product = await axios.put(`${baseUrl}api/product/report/${id}/${status}`, 
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': true
+            }
+        })
+        if (Product?.data?.message === "Successful response") {
+            return true
+        } else {
+            return null;
+        }
+
+    } catch (error) {
+        console.log("handleProduct" + error)
     }
 }
 
@@ -174,5 +196,28 @@ export const getPosts = async () => {
 
     } catch (error) {
         console.log("post" + error)
+    }
+}
+
+
+//approve
+export const handlePost = async (id, status) => {
+    try {
+
+        const Post = await axios.put(`${baseUrl}api/post/report/${id}/${status}`, 
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': true
+            }
+        })
+        if (Post?.data?.message === "Successful response") {
+            return true
+        } else {
+            return null;
+        }
+
+    } catch (error) {
+        console.log("handlePost" + error)
     }
 }

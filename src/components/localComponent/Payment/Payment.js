@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Button from "../../Button/Button";
 import { ButtonCustom } from "../../../components";
 import NewsCart from "./NewsCart";
-import { NavLink, useNavigate} from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { GetDataToContext } from "../../../context/ProviderContext";
 import Loading from "../../loadingToast/Loading";
 import { getNews } from "../../../api";
@@ -15,6 +15,7 @@ const Payment = () => {
 
     const {state, dispatch} = GetDataToContext()
     const {allNews} = state
+    console.log({allNews})
 
     useEffect(() => {
       getNews().then((news) => {
@@ -37,19 +38,19 @@ const Payment = () => {
 
         <NavLink to="create">
           <Button
-            text="News"
+            text="Create News"
             type="others"
             style={{ maxWidth: "20%", width: "20%" }}
           />
         </NavLink>
       </div>
 
-      <div className="w-full border border-gray-400 rounded-md relative mt-4">
+      <div className="w-full border border-gray-300 shadow-sm backdrop-blur-sm rounded-md relative mt-4">
         <span className="absolute top-4 left-4 text-sm text-headingColor font-semibold">
           Top News
         </span>
 
-        <div className="flex flex-wrap items-start mt-8 justify-center">
+        <div className="flex flex-wrap items-start mt-16 justify-center">
 
             {
               loading ? allNews?.map((item, index) => {

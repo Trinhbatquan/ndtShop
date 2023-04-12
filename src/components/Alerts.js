@@ -10,7 +10,7 @@ const Alert = ({type}) => {
         exit={{translateX: 200, opacity: 0}}
         key={type}
         className= {`fixed top-12 right-12 p-4 rounded-md backdrop-blur-md  flex shadow-xl
-        items-center justify-center ${type === "success" && "bg-green-500"} ${type === "danger" && "bg-red-500"} ${type === "delete" && "bg-blue-500"}`}
+        items-center justify-center ${(type === "success" || type==="approve" || type==="disApprove") && "bg-green-500"} ${type === "danger" && "bg-red-500"} ${type === "delete" && "bg-blue-500"}`}
     >
       {
         type === 'success' && (
@@ -35,6 +35,24 @@ const Alert = ({type}) => {
             <div className='flex items-center justify-center gap-4'>
                 <BsEmojiWink className='text-3xl text-primary'/>
                 <p className='text-xl font-semibold text-primary'>Done...Delete Successfully</p>
+            </div>
+        )
+      }
+
+      {
+        type === 'approve' && (
+            <div className='flex items-center justify-center gap-4'>
+                <BsEmojiWink className='text-3xl text-primary'/>
+                <p className='text-xl font-semibold text-primary'>Done...Approve Successfully</p>
+            </div>
+        )
+      }
+
+      {
+        type === 'disApprove' && (
+            <div className='flex items-center justify-center gap-4'>
+                <BsEmojiWink className='text-3xl text-primary'/>
+                <p className='text-xl font-semibold text-primary'>Done...DisApprove Successfully</p>
             </div>
         )
       }
