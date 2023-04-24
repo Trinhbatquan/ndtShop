@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AiOutlineUser, AiFillPlusCircle, AiFillSetting } from "react-icons/ai";
 import { NavLink, Outlet } from "react-router-dom";
@@ -10,12 +10,20 @@ import { MdPayments, MdDarkMode} from "react-icons/md";
 import { BsBell, BsFillFileEarmarkPostFill } from "react-icons/bs";
 import { isActiveStyle, isNotActiveStyle } from "../utils/style";
 import {Footer} from '../components'
+import { useNavigate } from "react-router-dom";
+import { setAuth } from "../context/reducer";
+import { GetDataToContext } from "../context/ProviderContext";
 
 const Home = () => {
-  const [isNavbar, setIsNavbar] = useState(false);
-  const [isContent, setIsContent] = useState(false);
+  const [isNavbar, setIsNavbar] = useState(true);
+  const [isContent, setIsContent] = useState(true);
   const [isMenu, setIsMenu] = useState(false);
   const [isLight, setIsLight] = useState(true); 
+  const navigate = useNavigate()
+
+
+  const {state, dispatch} = GetDataToContext()
+  const {auth} = state
 
   const handleMenu = () => {
     setIsMenu(!isMenu);
@@ -32,6 +40,22 @@ const Home = () => {
 
   const handleLightMode = () => {
     setIsLight(true);
+  }
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('authShop'))) {
+      dispatch(setAuth(JSON.parse(localStorage.getItem('authShop'))))
+    } else {
+      navigate("/login");
+    }
+
+  }, [])
+
+
+  const handleLogout = () => {
+    localStorage.removeItem('authShop');
+    dispatch(setAuth({}))
+    navigate("/login")
   }
 
   return (
@@ -62,25 +86,25 @@ const Home = () => {
               placeholder="Search here..."
             />
           </div>
-          <div className="flex  flex-1 items-center justify-between ml-80 relative">
-            <BsBell className="text-xl text-blue-400 shadow-sm mr-6 hover:text-blue-800 cursor-pointer" />
-            {
+          <div className="flex  flex-1 items-center justify-between ml-32 relative">
+            {/* <BsBell className="text-xl text-blue-400 shadow-sm mr-6 hover:text-blue-800 cursor-pointer" /> */}
+            {/* {
               isLight &&(
                 <FaRegSun 
                   onClick={handleDarkMode}
                   className="text-xl text-blue-400 shadow-sm mr-6 hover:text-blue-800 cursor-pointer" />
               )
-            }
-            {
+            } */}
+            {/* {
               isLight || (
                 <MdDarkMode 
                   onClick={handleLightMode}
                   className="text-xl text-blue-400 shadow-sm mr-6 hover:text-blue-800 cursor-pointer" />
               )
-            }
+            } */}
             <div className="flex items-center justify-between">
               <img
-                src={logo}
+                src={auth ? auth?.avatarUrl : logo}
                 alt="None"
                 className="h-10 w-10 rounded-full shadow-md cursor-pointer border
             border-gray-200 mr-2"
@@ -91,7 +115,7 @@ const Home = () => {
               >
                 <div className="min-w-[150px] flex flex-col items-start justify-center">
                   <span className="text-md text-headingColor font-semibold w-full">
-                    ShopName
+                    {auth ? `${auth?.firstName} ${auth?.lastName}` : "UserName"}
                   </span>
                   <span className="flex items-center justify-start w-full">
                     <p className="text-xs text-lighttextGray font-semibold">
@@ -105,7 +129,7 @@ const Home = () => {
             <AnimatePresence>
               {isMenu && (
                 <motion.div
-                  className="absolute z-10 p-3 top-16 right-0 w-150 gap-4 bg-card shadow-md rounded-md backdrop-blur-sm text-center cursor-pointer z-10"
+                  className="absolute z-10 p-3 top-14 right-10 w-150 gap-4 bg-card shadow-md rounded-md backdrop-blur-sm text-center cursor-pointer z-10"
                   initial={{ opacity: 0, translateY: -30 }}
                   animate={{ opacity: 1, translateY: 0 }}
                   exit={{ opacity: 0, translateY: -30 }}
@@ -117,7 +141,9 @@ const Home = () => {
                     </p>
                   </NavLink>
                   <hr />
-                  <p className="text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out">
+                  <p className="text-base text-textColor hover:font-semibold duration-150 transition-all ease-in-out"
+                    onClick={handleLogout}
+                  >
                     Sign Out
                   </p>
                 </motion.div>
@@ -128,7 +154,7 @@ const Home = () => {
       </div>
 
       <div 
-        className="w-full flex"
+        className="w-full flex h-full"
         >
         {/* navbar */}
         <AnimatePresence>
@@ -138,7 +164,8 @@ const Home = () => {
               animate={{ opacity: 1, translateX: 0 }}
               exit={{ opacity: 0, translateX: -50 }}
               transition={{ duration: 0.4, delay: 0.1 }}
-              className="h-420 min-h-[420px] w-1/6 bg-blue-800 flex flex-col items-start justify-center pt-8"
+              className="w-1/6 bg-blue-800 flex flex-col items-start justify-start pt-8"
+              style={{minHeight: "100vh"}}
             >
               <span className="text-lg text-white font-semibold ml-8">
                 MAIN
@@ -174,7 +201,7 @@ const Home = () => {
                 </NavLink>
               </div>
               <hr className="text-white w-full opacity-30" />
-              <div className="mt-6 flex flex-col items-start justify-center w-full h-auto ml-8">
+              {/* <div className="mt-6 flex flex-col items-start justify-center w-full h-auto ml-8">
                 <NavLink
                   to="/home/other"
                   className={({ isActive }) =>
@@ -193,7 +220,7 @@ const Home = () => {
                   <AiFillSetting className="mr-2" />
                   Setting
                 </NavLink>
-              </div>
+              </div> */}
             </motion.div>
           )}
         </AnimatePresence>
@@ -206,6 +233,7 @@ const Home = () => {
               exit={{ opacity: 0, translateX: 50 }}
               transition={{ duration: 0.4, delay: 0.1 }}
               className="p-8 flex-1 h-auto w-5/6 overflow-y-scroll"
+              style={{minHeight: "100vh"}}
             >
               <Outlet />
             </motion.div>

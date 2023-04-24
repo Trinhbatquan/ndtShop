@@ -36,7 +36,7 @@ const Header = () => {
           />
         </div>
         <div className="flex  flex-1 items-center justify-center ml-60 relative">
-          <BiMessageAltDetail className="text-xl  text-blue-400 mr-8 shadow-sm hover:text-blue-800 cursor-pointer" />
+          {/* <BiMessageAltDetail className="text-xl  text-blue-400 mr-8 shadow-sm hover:text-blue-800 cursor-pointer" /> */}
           <BsBell className="text-xxl text-blue-400 mr-8 shadow-sm hover:text-blue-800 cursor-pointer" />
           <div className="flex items-center justify-center">
             <img

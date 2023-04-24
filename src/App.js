@@ -18,7 +18,7 @@ import { GetDataToContext } from "./context/ProviderContext";
 function App() {
   const { state } = GetDataToContext();
   return (
-    <div className="h-auto min-w-[680px]bg-primary flex items-center">
+    <div className="h-full min-w-[680px]bg-primary flex items-center">
       <Routes>
         <Route path="login" element={<Login />} />
         <Route path="home" element={<Home />}>
@@ -30,10 +30,10 @@ function App() {
           <Route path="setting" element={<Setting />} />
           <Route path="profile" element={<Profile />} />
           <Route path="news/create" element={<CreateNews />} />
-          <Route path="news/:id" element={<DetailNews />} />
           
 
         </Route>
+        <Route path="/news/:id" element={<DetailNews />} />
         <Route path="/" element={<Navigate to="home" replace={true} />} />
       </Routes>
 

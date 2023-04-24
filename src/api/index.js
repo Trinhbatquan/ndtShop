@@ -1,7 +1,34 @@
 import axios from "axios"
 
 
-const baseUrl = 'https://4eef-171-224-181-255.ngrok-free.app/'
+const baseUrl = 'https://5d34-171-224-178-47.ngrok-free.app/'
+
+
+
+//login
+export const loginAdmin = async (body) => {
+    try {
+
+        const user = await axios.post(`${baseUrl}api/auth/login`,
+        {
+            ...body,
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': true
+            }
+        })
+        if (user) {
+            return user?.data?.data
+        } else {
+            return null;
+        }
+
+    } catch (error) {
+        console.log("user" + error)
+    }
+}
 
 
 //products

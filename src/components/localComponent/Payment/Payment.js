@@ -30,11 +30,11 @@ const Payment = () => {
   return (
     <div className="p-2 flex flex-col">
       <div className="flex items-center justify-between">
-        <div className="bg-slate-300 w-full h-auto flex items-center justify-start p-3 mr-12">
+        {/* <div className="bg-slate-300 w-full h-auto flex items-center justify-start p-3 mr-12">
           <span className="text-sm text-headingColor mr-10">Sắp xếp theo</span>
           <ButtonCustom type="primary" text="Phổ biến" />
           <ButtonCustom type="danger" text="Mới nhất" />
-        </div>
+        </div> */}
 
         <NavLink to="create">
           <Button

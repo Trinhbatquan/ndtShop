@@ -14,7 +14,7 @@ const NewsCart = ({ image, text, id }) => {
   const [overlay, setOverlay] = useState(false);
 
   const handleProduct = (id) => {
-    navigate(`/home/news/${id}`);
+    navigate(`/news/${id}`);
   };
 
   const handleNotification = () => {

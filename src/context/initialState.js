@@ -7,4 +7,5 @@ export const initialState = {
     allProducts: [],
     shop: null,
     allPosts: [],
+    auth: {}
 }

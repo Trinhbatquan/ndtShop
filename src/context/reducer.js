@@ -4,6 +4,7 @@ const POST_IDS = 'postId'
 const SET_ALL_PRODUCTS = 'setAllProducts'
 const SET_ALL_POSTS = 'setAllPosts'
 const SET_SHOP = 'setShops'
+const SET_AUTH = 'setAuth'
 
 
 export const setAllNews = (payload) => {
@@ -54,6 +55,13 @@ export const setShopContext = (payload) => {
 export const setNewId = (payload) => {
     return {
         type: NEW_ID,
+        payload
+    }
+}
+
+export const setAuth = (payload) => {
+    return {
+        type: SET_AUTH,
         payload
     }
 }
@@ -117,6 +125,13 @@ const reducer = (state, action) => {
                 ...state,
                 allPosts: action.payload
                 }
+
+        case SET_AUTH:
+            return {
+                ...state,
+                auth: action.payload
+                }
+        
 
 
         default:

@@ -10,18 +10,33 @@ import Loading from '../components/loadingToast/Loading'
 
 const Profile = () => {
 
+  const [name, setName] = useState("")
+  const [des, setDes] = useState("")
+  const [url, setUrl] = useState("")
+  const [address, setAddress] = useState("")
 
-  const {state, dispatch} = GetDataToContext()
+
+ 
   const [loading, setLoading] = useState(false)
-  const {shop} = state
+
 
 
   useEffect(() => {
-    getShop().then((data) => {
-      dispatch(setShopContext(data[2]))
-      setLoading(true)
-    })
-  }, [])
+    // getShop().then((data) => {
+    //   dispatch(setShopContext(data[2]))
+      setLoading(false)
+      setTimeout(() => {
+        if (JSON.parse(localStorage.getItem('authShop'))) {
+          console.log(1)
+          const {firstName, lastName, avatarUrl, emailAddress, role} = JSON.parse(localStorage.getItem('authShop'));
+          setName(`${firstName} ${lastName}`)
+          setDes(role?.description)
+          setAddress(emailAddress)
+          setUrl(avatarUrl)
+          setLoading(true)
+        }
+      }, 1000)
+    }, [])
 
   return (
      <div 
@@ -40,12 +55,12 @@ const Profile = () => {
                   About me
                 </p>
                 <p className="pb-4 text-md text-textColor flex items-center justify-center">
-                  {<BsShop className="text-textColor font-lg mr-2 mb-1" />}{shop?.name}
+                  {<BsShop className="text-textColor font-lg mr-2 mb-1" />}{name}
                 </p>
                 <p className="pb-4 text-md text-textColor flex items-center justify-center">
-                  {<BsShop className="text-textColor font-lg mr-2 mb-1" />}{shop?.description}
+                  {<BsShop className="text-textColor font-lg mr-2 mb-1" />}{des}
                 </p>
-                <p className="pb-4 text-md text-textColor">
+                {/* <p className="pb-4 text-md text-textColor">
                   <span>
                     {" "}
                     Nếu bạn cảm thấy hài lòng về dịch cụ của shop, vui lòng đánh giá 5
@@ -56,11 +71,11 @@ const Profile = () => {
                     {<BsFillBagHeartFill className="mr-1" />}
                     {<BsFillBagHeartFill />}
                   </div>
-                </p>
+                </p> */}
               </div>
 
               <div className="flex flex-col items-center justify-evenly flex-1">
-                <img src={shop?.avatar}  alt="none" 
+                <img src={url}  alt="none" 
                   className="h-60 w-60 rounded-full shadow-md backdrop-blur-sm"
                 />
               </div>
@@ -70,12 +85,12 @@ const Profile = () => {
                   Detail
                 </p>
                 <p className="pb-4 text-md text-textColor flex items-center justify-center">
+                  {/* {<MdGrade className="text-red-900 font-xl" />}
                   {<MdGrade className="text-red-900 font-xl" />}
-                  {<MdGrade className="text-red-900 font-xl" />}
-                  {<MdGrade className="text-red-900 font-xl mr-2" />}
-                  Rate: {shop?.rate}/5
+                  {<MdGrade className="text-red-900 font-xl mr-2" />} */}
+                  EmailAddress: {address}
                 </p>
-                <p className="pb-4 text-md text-textColor">
+                {/* <p className="pb-4 text-md text-textColor">
                   <span>
                     {" "}
                     Nếu bạn cảm thấy hài lòng về dịch cụ của shop, vui lòng đánh giá 5
@@ -86,7 +101,7 @@ const Profile = () => {
                     {<BsFillBagHeartFill className="mr-1" />}
                     {<BsFillBagHeartFill />}
                   </div>
-                </p>
+                </p> */}
               </div>
             </div>
           </>

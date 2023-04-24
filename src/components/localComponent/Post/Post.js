@@ -78,11 +78,11 @@ const Post = () => {
   return (
     <div className="w-full h-auto flex flex-col justify-center  overflow-y-scroll">
       {/* custom */}
-      <div className="bg-slate-300 w-full h-auto flex items-center justify-start p-3">
+      {/* <div className="bg-slate-300 w-full h-auto flex items-center justify-start p-3">
         <span className="text-sm text-headingColor mr-10">Sắp xếp theo</span>
         <ButtonCustom type="primary" text="Phổ biến" />
         <ButtonCustom type="danger" text="Mới nhất" />
-      </div>
+      </div> */}
 
       <div className="w-full border border-gray-300 shadow-sm backdrop-blur-sm rounded-md relative mt-4">
         <span className="absolute top-4 left-4 text-sm text-headingColor font-semibold">

@@ -21,11 +21,11 @@ const DetailNews = () => {
     }, [])
 
   return (
-    <div className='w-4/5 border border-gray-300 rounded-lg shadow-lg backdrop-blur-lg mx-auto'>
+    <div className='sm:w-4/5 border border-gray-300 rounded-lg shadow-lg backdrop-blur-lg mx-auto sm:mt-4'>
 
     {
       loading ? (<>
-                <div className='flex flex-col p-2 bg-slate-200'>
+                <div className='flex flex-col sm:p-2 p-3 bg-slate-200'>
                     <p className='text-lg font-semibold'>{newId?.title}</p>
                     <img src={newId?.imageUrl}  alt="None" className='w-3/5 object-cover mx-auto mt-2 mb-2'/>
                     <p className='text-headingColor px-3 mt-2 text-sm'>
