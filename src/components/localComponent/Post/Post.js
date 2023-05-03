@@ -84,7 +84,7 @@ const Post = () => {
         <ButtonCustom type="danger" text="Mới nhất" />
       </div> */}
 
-      <div className="w-full border border-gray-300 shadow-sm backdrop-blur-sm rounded-md relative mt-4">
+      <div className="w-full border border-gray-300 shadow-sm backdrop-blur-sm rounded-md relative mt-4 pb-32">
         <span className="absolute top-4 left-4 text-sm text-headingColor font-semibold">
           New Post
         </span>
@@ -116,7 +116,7 @@ const Post = () => {
                 animate={{ opacity: 1, translateY: 0 }}
                 exit={{ opacity: 0, translateY: -50 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="fixed bg-slate-100 -top-16 z-10 flex flex-col justify-start pt-3 rounded-md 
+                className="fixed bg-slate-100 top-10 z-10 flex flex-col justify-start pt-3 rounded-md 
                 shadow-md backdrop-blur-md border border-gray-300 overflow-y-scroll overflow-x-hidden pt-3"
                 style={{
                   maxHeight: "450px",
@@ -124,6 +124,7 @@ const Post = () => {
                   height: "450px",
                   width: "450px",
                   left: "380px",
+                  zIndex: 10,
                 }}
               >
 
@@ -143,7 +144,7 @@ const Post = () => {
                   </div>
                 </div>
 
-                <span className="mt-2 text-md text-black ml-3">{allPosts[postId]?.postContentText}</span>
+                <span className="mt-2 text-md text-black mx-3">{allPosts[postId]?.postContentText}</span>
                 
                 <div className="mx-auto flex justify-center items-center">
                   <img
@@ -231,7 +232,7 @@ const Post = () => {
                                 className="outline-none rounded-md shadow-sm backdrop-blur-sm px-3 py-2 bg-blue-600 text-white font-semibold textmds" type="button" name="no"
                                 onClick={() => handleDisApprove(allPosts[postId]?.id, "disapprove")}
                               >
-                                DisApprove
+                                Disapprove
                               </motion.button>
                               <motion.button
                                 whileTap={{scale: 0.75}}

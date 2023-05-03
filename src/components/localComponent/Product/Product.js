@@ -226,12 +226,12 @@ const Product = () => {
                 
                 {/* <div className="w-full flex items-center justify-start ml-3 mt-8"> */}
                  <div className="bg-white py-2">
-                   <div className="flex items-center justify-center mx-auto">
+                   <div className="flex items-center justify-center">
                     <img
                           src={allProducts[productId]?.images[0]?.url}
                           alt="None"
                           // className="w-14 h-14 object-cover rounded-full border border-gray-200 "
-                          className="w-60 h-72 object-cover ml-3 mt-2 mx-auto"
+                          className="w-60 h-72 object-cover mt-2"
                         />
                    </div>
                    <span
@@ -337,7 +337,7 @@ const Product = () => {
 
                     <div className="flex flex-col pt-2 pb-4">
                         <span className="font-semibold text-sm ml-3">Mô tả sản phẩm</span>
-                        <span className="text-sm ml-3 mt-1">{allProducts[productId]?.description}</span>
+                        <span className="text-sm mx-3 mt-1">{allProducts[productId]?.description}</span>
                     </div>
                  </div>
 
@@ -379,7 +379,7 @@ const Product = () => {
                                 className="outline-none rounded-md shadow-sm backdrop-blur-sm px-3 py-2 bg-blue-600 text-white font-semibold textmds" type="button" name="no"
                                 onClick={() => handleDisApprove(allProducts[productId]?.id, "disapprove")}
                               >
-                                DisApprove
+                                Disapprove
                               </motion.button>
                               <motion.button
                                 whileTap={{scale: 0.75}}

@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-const baseUrl = 'https://5d34-171-224-178-47.ngrok-free.app/'
+const baseUrl = 'https://fc7e-171-224-180-206.ngrok-free.app/'
 
 
 

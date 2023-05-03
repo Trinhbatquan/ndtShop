@@ -60,37 +60,40 @@ const PostCard = ({ image, text, id, content, nameProduct, priceProduct, ratePro
 
       <span
         className="px-1 text-headingColor font-semibold"
-        style={{ lineHeight: "20px", fontSize: "11px" }}
+        style={{ lineHeight: "16px", fontSize: "10px" }}
       >
-        {content.length > 46 ? `${content.slice(0, 46)}...` : content}
+        {content.length > 55 ? `${content.slice(0, 55)}...` : content}
       </span>
 
-      <div className="w-full flex flex-row items-center justify-between mx-2">
-        <div>
+      <div className="w-full flex flex-row items-center justify-between mx-1 mt-1">
+        <div 
+            // style={{ fontSize: "10px", lineHeight: "10px" }}
+        >
           <span
-            style={{ fontSize: "10px" }}
-            className="text-textColor opacity-100 mr-1 "
+            className="text-textColor opacity-100 mr-2 block"
+            style={{ fontSize: "10px", lineHeight: "16px" }}
           >
-            {nameProduct}
+          {nameProduct.length > 65 ? `${nameProduct.slice(0, 65)}...` : nameProduct}
+            {/* {nameProduct} */}
           </span>
         </div>
         {isLove || (
           <AiOutlineHeart
-            style={{ fontSize: "10px" }}
+            style={{ fontSize: "16px" }}
             className="text-red-600 mr-4"
             onClick={handleLove}
           />
         )}
         {isLove && (
           <AiFillHeart
-            style={{ fontSize: "10px" }}
+            style={{ fontSize: "16px" }}
             className="text-red-600 mr-4"
             onClick={handleNotLove}
           />
         )}
       </div>
 
-      <div className="w-full flex flex-row items-center justify-between px-2">
+      <div className="w-full flex flex-row items-center justify-between px-1 pt-1">
         <span
           style={{ fontSize: "10px" }}
           className="text-red-600 font-semibold"
